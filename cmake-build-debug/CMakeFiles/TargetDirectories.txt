@@ -1,0 +1,3 @@
+C:/Users/Blas/Desktop/Jueguito/cmake-build-debug/CMakeFiles/Jueguito.dir
+C:/Users/Blas/Desktop/Jueguito/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Blas/Desktop/Jueguito/cmake-build-debug/CMakeFiles/rebuild_cache.dir
