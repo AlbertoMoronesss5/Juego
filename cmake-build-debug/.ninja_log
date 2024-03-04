@@ -1,17 +1,7 @@
 # ninja log v5
-17	3152	7306061293327021	build.ninja	542bbdeb8eba17c0
-2366	2948	7306060767327675	Jueguito.exe	31040a9e20d55ac7
-26	2362	7306060761592027	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
+3896	5122	7306080469288370	Jueguito.exe	31040a9e20d55ac7
+48	5662	7312075784206433	build.ninja	542bbdeb8eba17c0
+16	3893	7306080457280919	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
 49	5577	7306059410394775	CMakeFiles/Jueguito.dir/Player/Player.cpp.obj	60bcbe2d006d808c
 29	5579	7306059410200942	CMakeFiles/Jueguito.dir/Enemy/Enemy.cpp.obj	6ee105eceb022256
 5538	8512	7306059440412638	CMakeFiles/Jueguito.dir/Character/Character.cpp.obj	b8d37466bc675237
-17	2905	7306062839906744	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
-2907	3881	7306062849581657	Jueguito.exe	31040a9e20d55ac7
-15	5599	7306067313341319	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
-5603	7293	7306067330494342	Jueguito.exe	31040a9e20d55ac7
-23	3953	7306073323900314	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
-3957	6233	7306073347375794	Jueguito.exe	31040a9e20d55ac7
-24	4125	7306078238358552	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
-4127	5743	7306078255233648	Jueguito.exe	31040a9e20d55ac7
-16	3893	7306080457280919	CMakeFiles/Jueguito.dir/main.cpp.obj	a2cf89d41fca45e9
-3896	5122	7306080469288370	Jueguito.exe	31040a9e20d55ac7

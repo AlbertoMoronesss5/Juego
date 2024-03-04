@@ -1,15 +1,35 @@
-#ifndef JUEGO2_PLAYER_H
-#define JUEGO2_PLAYER_H
+
+#ifndef Jueguito_PLAYER_H
+#define Jueguito_PLAYER_H
+
 #include "../Character/Character.h"
+#include "../Enemy/Enemy.h"
+#include "../Combat/Action.h"
 
+struct Action;
+class Enemy;
 
-class Player : public Character{
+class Player: public Character {
+protected:
+    int experience;
+    int level;
 public:
-    Player(string, int);
-    void getAttack(Character *target) override;
-    ~Player();
+    Player(string _name, int _health, int _attack, int _defense, int _speed);
+    void doAttack(Character *target) override;
+    void takeDamage(int damage) override;
+    Action takeAction(vector<shared_ptr<Character>> possibleTargets) override;
 
+    Character* getTarget(vector<Enemy*> enemies);
+
+    bool flee(vector<Enemy*> enemies);
+    void emote();
+    void levelUp();
+    void gainExperience(int);
+
+
+    Action takeAction(vector<Enemy*> enemies);
 
 };
 
-#endif
+
+#endif //RPG_PLAYER_H

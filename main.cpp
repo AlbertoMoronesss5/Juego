@@ -1,62 +1,54 @@
 #include <iostream>
-#include "Player.h"
-#include "Enemy.h"
-#include "../Character/Character.h"
+#include "Enemy/Enemy.h"
+#include "Player/Player.h"
+#include "Combat/Combat.h"
+#include <vector>
 
 using namespace std;
 
 int main() {
-    Player *player1 = nullptr;
-    Enemy *enemy1 = nullptr;
+    cout << "WELCOME. Please write a name for your Player: " << endl;
+    string playerName;
+    cin >> playerName;
 
-    int opcion;
-    cout << "Welcome to my game\n";
-    cout << "1. Personalize names\n";
-    cout << "2. Exit ";
-    cout << "\n";
-    cin >> opcion;
+    cout << "Write a name for the ENEMY:" << endl;
+    string enemyName;
+    cin >> enemyName;
 
-    switch (opcion) {
-        case 1: {
-            string playerName, enemyName;
-            cout << "Enter name for Player: ";
-            cin >> playerName;
-            cout << "Enter name for Enemy: ";
-            cin >> enemyName;
-            player1 = new Player(playerName, 20);
-            enemy1 = new Enemy(enemyName, 20);
-            break;
-        }
-        case 2: {
-            exit(0);
-        }
-        default:
-            cerr << "No option \n";
-            return 1;
-    }
+    Player *player = new Player(playerName, 20, 2, 3, 1);
+    Enemy *enemy = new Enemy(enemyName, 20, 5, 3, 7);
+    Enemy *enemy2 = new Enemy("Orc", 30, 8, 5, 2);
 
-    int i = 0;
+    vector<Character*> participants;
+    participants.push_back(player);
+    participants.push_back(enemy);
+    participants.push_back(enemy2);
+
+    Combat* combat = new Combat(participants);
+
+    int choice;
     do {
-        cout << "ROUND..... " << ++i << "\n";
-        player1->getAttack(enemy1);
-        if (!enemy1->alive()) {
-            cout << player1->getName() << " WON the fight" << endl;
-            break;
+        cout << "1. Atacar\n";
+        cout << "2. Salir\n";
+        cout << "Elige una opción: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                combat->doCombat();
+                break;
+            case 2:
+                cout << "¡Hasta luego!\n";
+                break;
+            default:
+                cout << "Opción no válida\n";
         }
+    } while (choice != 2);
 
-        cout << "\n";
-
-        enemy1->getAttack(player1);
-        if (!player1->alive()) {
-            cout << enemy1->getName() << " WON the fight" << endl;
-            break;
-        }
-
-        cout << "\n";
-    } while (player1->alive() && enemy1->alive());
-
-    delete player1;
-    delete enemy1;
+    delete player;
+    delete enemy;
+    delete enemy2;
+    delete combat;
 
     return 0;
 }
