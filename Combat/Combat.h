@@ -19,7 +19,7 @@ private:
     vector<Player*> teamMembers;
     vector<Enemy*> enemies;
 
-    priority_queue<Action> actions; //COLA DE PRIORIDAD PARA ALMACENAR  personajes, jugadores, enemigos y acciones.
+    priority_queue<Action> actions;
 
     void prepareCombat();
     Character* getTarget(Character* target);
@@ -30,7 +30,10 @@ public:
     void addParticipant(Character *participant);
     void doCombat();
     string participantsToString();
+
+    vector<Character*> possibleTarget;
+
 };
 
 
-#endif //RPG_COMBAT_H
+#endif

@@ -76,37 +76,8 @@ Character* Player::getTarget(vector<Enemy *> enemies) {
         cout << i << ". " << enemies[i]->getName() << endl;
     }
     cin >> targetIndex;
-    //TODO: Add input validation
+
     return enemies[targetIndex];
-}
-
-Action Player::takeAction(vector<shared_ptr<Character>> possibleTargets){
-    int option = 0;
-    cout<<"Choose an action"<<endl;
-    cout<<"1. Attack"<<endl;
-
-    cin >> option;
-    Character* target = nullptr;
-
-
-    Action myAction;
-
-    myAction.speed = getSpeed();
-
-    switch(option) {
-        case 1:
-            target = getTarget(enemies);
-            //1.
-            myAction.action = [this, target](){
-                doAttack(target);
-            };
-            break;
-        default:
-            cout<<"Invalid option"<<endl;
-            break;
-    }
-
-    return myAction;
 }
 
 Action Player::takeAction(vector<Enemy*>enemies) {

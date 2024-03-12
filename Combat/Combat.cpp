@@ -2,7 +2,7 @@
 #include "Combat.h"
 #include <iostream>
 #include <algorithm>
-#include "..Player/Player.h"
+#include "../Player/Player.h"
 
 
 using namespace std;
@@ -53,7 +53,7 @@ void Combat::doCombat() {
     while(enemies.size() != 0 && teamMembers.size() != 0) {
         vector<Character*>::iterator participant = participants.begin();
 
-        //Una iteracion por turno de cada participante (player y enemigo)
+
         while(participant != participants.end()) {
             Character* target = nullptr;
             Action currentAction;
@@ -61,12 +61,13 @@ void Combat::doCombat() {
                 currentAction = ((Player*)*participant)->takeAction(enemies);
             }
             else {
-                currentAction = ((Enemy*)*participant)->takeAction(teamMembers);
+                currentAction = ((Enemy*)*participant)->takeAction(possibleTargets);
             }
             actions.push(currentAction);
             participant++;
         }
-        //Aqui se ejecutan las acciones
+
+
         while(!actions.empty()) {
             Action currentAction = actions.top();
             currentAction.action();

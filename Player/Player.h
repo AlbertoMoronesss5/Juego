@@ -5,6 +5,7 @@
 #include "../Character/Character.h"
 #include "../Enemy/Enemy.h"
 #include "../Combat/Action.h"
+#include <vector>
 
 struct Action;
 class Enemy;
@@ -15,11 +16,15 @@ protected:
     int level;
 public:
     Player(string _name, int _health, int _attack, int _defense, int _speed);
+
+
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
-    Action takeAction(vector<shared_ptr<Character>> possibleTargets) override;
+    Action takeAction(vector<Character> possibleTargets) override;
 
     Character* getTarget(vector<Enemy*> enemies);
+    Action takeAction(vector<Enemy*> enemies);
+
 
     bool flee(vector<Enemy*> enemies);
     void emote();
@@ -27,9 +32,8 @@ public:
     void gainExperience(int);
 
 
-    Action takeAction(vector<Enemy*> enemies);
 
 };
 
 
-#endif //RPG_PLAYER_H
+#endif
