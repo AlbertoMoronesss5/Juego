@@ -27,12 +27,9 @@ void Player::takeDamage(int damage) {
     if(health <= 0) {
         cout<<"You have died"<<endl;
     }
-    else {
-        cout<<"You have taken " << damage << " damage" << endl;
-    }
 }
 
-bool Player::flee(vector<Enemy*> enemies) {
+void Player::flee(vector<Enemy*> enemies) {
     std::sort(enemies.begin(), enemies.end(), compareSpeed);
     Enemy* fastestEnemy = enemies[0];
     bool fleed = false;
@@ -46,7 +43,7 @@ bool Player::flee(vector<Enemy*> enemies) {
         fleed = chance > 99;
     }
 
-    return fleed;
+    this ->fleed = fleed;
 }
 
 void Player::emote() {
@@ -84,7 +81,7 @@ Action Player::takeAction(vector<Enemy*>enemies) {
     int option = 0;
     cout<<"Choose an action"<<endl;
     cout<<"1. Attack"<<endl;
-//    cout<<"2. Flee"<<endl;
+    cout<<"2. Flee"<<endl;
     cin >> option;
     Character* target = nullptr;
 
@@ -92,17 +89,24 @@ Action Player::takeAction(vector<Enemy*>enemies) {
     Action myAction;
 
     myAction.speed = this->getSpeed();
+    myAction.subscriber = this;
 
-    switch(option) {
+    switch (option) {
         case 1:
             target = getTarget(enemies);
+            myAction.target = target;
             //1.
-            myAction.action = [this, target](){
+            myAction.action = [this, target]() {
                 doAttack(target);
             };
             break;
+        case 2:
+            myAction.action = [this, enemies]() {
+                flee(enemies);
+            };
+            break;
         default:
-            cout<<"Invalid option"<<endl;
+            cout << "Invalid option" << endl;
             break;
     }
 

@@ -1,4 +1,3 @@
-
 #include "Character.h"
 
 Character::Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
@@ -8,6 +7,7 @@ Character::Character(string _name, int _health, int _attack, int _defense, int _
     defense = _defense;
     speed = _speed;
     isPlayer = _isPlayer;
+    fleed = false;
 }
 
 void Character::setName(string _name) {
@@ -56,4 +56,8 @@ string Character::toString() {
 
 bool Character::getIsPlayer() {
     return isPlayer;
+}
+
+bool Character::hasFleed() {
+    return fleed;
 }

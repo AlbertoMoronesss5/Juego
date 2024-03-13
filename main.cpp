@@ -2,7 +2,7 @@
 #include "Enemy/Enemy.h"
 #include "Player/Player.h"
 #include "Combat/Combat.h"
-#include <vector>
+
 
 using namespace std;
 
@@ -15,33 +15,15 @@ int main() {
     string enemyName;
     cin >> enemyName;
 
-    Player *player = new Player(playerName, 10, 2, 3, 3);
-    Enemy *enemy = new Enemy(enemyName,10, 4, 3, 4);
+    Player *player = new Player(playerName, 10, 3, 2, 3);
+    Enemy *enemy = new Enemy(enemyName,8, 4, 1, 4);
 
     vector<Character*> participants;
     participants.push_back(player);
     participants.push_back(enemy);
 
     Combat* combat = new Combat(participants);
-
-    int choice;
-    do {
-        cout << "1. Attack\n";
-        cout << "2. Exit\n";
-        cout << "Chose Someone Option: ";
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                combat->doCombat();
-                break;
-            case 2:
-                cout << "¡GOODBYE!\n";
-                break;
-            default:
-                cout << "PLEASE. Write a correct option\n";
-        }
-    } while (choice != 2);
+    combat -> doCombat();
 
     delete player;
     delete enemy;
