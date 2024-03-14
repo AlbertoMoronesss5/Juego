@@ -1,6 +1,3 @@
-//
-// Created by Victor Navarro on 13/02/24.
-//
 #include "Enemy.h"
 #include <iostream>
 
@@ -13,7 +10,7 @@ int getRolledAttack(int attack) {
     return (rand() % (attack - lowerLimit)) + lowerLimit;
 }
 
-Enemy::Enemy(string name, int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, false) {
+Enemy::Enemy(string name, int health, int attack, int defense, int speed, string arm) : Character(name, health, attack, defense, speed, false, arm) {
 }
 
 void Enemy::doAttack(Character *target) {
@@ -28,12 +25,13 @@ void Enemy::takeDamage(int damage) {
         cout<<getName()<<" has died"<<endl;
     }
     else {
-        cout<<getName()<<" has taken " << damage << " damage" << endl;
+        cout<<getName()<<" has taken " << damage << " damage whit a "<<getArm()<< endl;
     }
 }
 
 Character* Enemy::getTarget(vector<Player *> teamMembers) {
-    // Obtiene el miembro del equipo con menos vida
+
+
     int targetIndex = 0;
     int lowestHealth = INT_MAX;
     for(int i=0; i < teamMembers.size(); i++) {

@@ -6,11 +6,12 @@
 using namespace std;
 using namespace combat_utils;
 
+
 bool compareSpeed(Enemy *a, Enemy *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
-Player::Player(string name, int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, true) {
+Player::Player(string name, int health, int attack, int defense, int speed, string arm) : Character(name, health, attack, defense, speed, true, arm) {
     experience = 0;
     level = 1;
 }
@@ -22,12 +23,15 @@ void Player::doAttack(Character *target) {
 }
 
 void Player::takeDamage(int damage) {
-    setHealth(health - damage);
-
-    if(health <= 0) {
-        cout<<"You have died"<<endl;
+    setHealth(getHealth() - damage);
+    if(getHealth() <= 0) {
+        cout<<getName()<<" has died"<<endl;
+    }
+    else {
+        cout<<getName()<<" has taken " << damage << " damage whit a "<<getArm()<< endl;
     }
 }
+
 
 void Player::flee(vector<Enemy*> enemies) {
     std::sort(enemies.begin(), enemies.end(), compareSpeed);
@@ -82,6 +86,7 @@ Action Player::takeAction(vector<Enemy*>enemies) {
     cout<<"Choose an action"<<endl;
     cout<<"1. Attack"<<endl;
     cout<<"2. Flee"<<endl;
+
     cin >> option;
     Character* target = nullptr;
 

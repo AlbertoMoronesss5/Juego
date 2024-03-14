@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
+Character::Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer, string _arm) {
     name = _name;
     health = _health;
     attack = _attack;
@@ -8,6 +8,7 @@ Character::Character(string _name, int _health, int _attack, int _defense, int _
     speed = _speed;
     isPlayer = _isPlayer;
     fleed = false;
+    arm = _arm;
 }
 
 void Character::setName(string _name) {
@@ -60,4 +61,12 @@ bool Character::getIsPlayer() {
 
 bool Character::hasFleed() {
     return fleed;
+}
+
+void Character::setArm(string _arm) {
+    name = _arm;
+}
+
+string Character::getArm() {
+    return arm;
 }

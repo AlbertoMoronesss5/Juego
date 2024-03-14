@@ -1,6 +1,4 @@
-//
-// Created by Victor Navarro on 19/02/24.
-//
+
 #include "Combat.h"
 #include <iostream>
 #include <algorithm>
@@ -60,7 +58,7 @@ void Combat::doCombat() {
         cout<<"You have won the combat"<<endl;
     }
     else {
-        cout<<"The enemies have won the combat - Game Over"<<endl;
+        cout<<"Won the combat - Game Over"<<endl;
     }
 }
 

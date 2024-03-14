@@ -17,9 +17,10 @@ protected:
     int speed;
     bool isPlayer;
     bool fleed;
+    string arm;
 
 public:
-    Character(string, int, int, int, int, bool);
+    Character(string, int, int, int, int, bool, string);
 
     virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
@@ -38,6 +39,8 @@ public:
     string toString();
     bool getIsPlayer();
     bool hasFleed();
+    void setArm(string);
+    string getArm();
 };
 
 
