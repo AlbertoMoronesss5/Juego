@@ -58,7 +58,7 @@ void Combat::doCombat() {
         cout<<"You have won the combat"<<endl;
     }
     else {
-        cout<<"Won the combat - Game Over"<<endl;
+        cout<<"The enemies have won the combat - Game Over"<<endl;
     }
 }
 
@@ -85,9 +85,19 @@ void Combat::executeActions() {
         Action currentAction = actions.top();
         currentAction.action();
         checkForFlee(currentAction.subscriber);
-        checkParticipantStatus(currentAction.subscriber);
-        checkParticipantStatus(currentAction.target);
-        actions.pop();
+        if(currentAction.target!= nullptr)
+        {
+            checkParticipantStatus(currentAction.subscriber);
+            checkParticipantStatus(currentAction.target);
+            actions.pop();
+        }
+        else{
+            while (!actions.empty()) {
+                actions.pop();
+            }
+        }
+
+
     }
 }
 

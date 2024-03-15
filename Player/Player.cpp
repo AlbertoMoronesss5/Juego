@@ -23,31 +23,33 @@ void Player::doAttack(Character *target) {
 }
 
 void Player::takeDamage(int damage) {
-    setHealth(getHealth() - damage);
-    if(getHealth() <= 0) {
-        cout<<getName()<<" has died"<<endl;
-    }
-    else {
-        cout<<getName()<<" has taken " << damage << " damage whit a "<<getArm()<< endl;
+    setHealth(health - damage);
+    cout << "You have taken " << damage << " damage whit a "<< getArm() << endl;
+    if (health <= 0) {
+        cout << "You have died  GAME OVER " << endl;
     }
 }
 
 
 void Player::flee(vector<Enemy*> enemies) {
     std::sort(enemies.begin(), enemies.end(), compareSpeed);
-    Enemy* fastestEnemy = enemies[0];
+    Enemy *fastestEnemy = enemies[0];
     bool fleed = false;
-    if(this->getSpeed() > fastestEnemy->getSpeed()) {
-        fleed =  true;
-    }
-    else {
+    if (this->getSpeed() > fastestEnemy->getSpeed()) {
+        fleed = true;
+    } else {
         srand(time(NULL));
         int chance = rand() % 100;
-        cout<< "chance: " << chance << endl;
-        fleed = chance > 99;
+        cout << "chance to flee " << chance << endl;
+        if (fleed = chance > 90) {
+            fleed = true;
+        } else {
+            cout << "You can't be fleed, fight homosexual " << endl;
+        }
     }
 
-    this ->fleed = fleed;
+    this->fleed = fleed;
+
 }
 
 void Player::emote() {
@@ -83,6 +85,7 @@ Character* Player::getTarget(vector<Enemy *> enemies) {
 
 Action Player::takeAction(vector<Enemy*>enemies) {
     int option = 0;
+    cout<<"////////////////"<<endl;
     cout<<"Choose an action"<<endl;
     cout<<"1. Attack"<<endl;
     cout<<"2. Flee"<<endl;

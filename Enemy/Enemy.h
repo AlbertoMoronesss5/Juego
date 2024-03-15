@@ -18,7 +18,9 @@ public:
     Character* getTarget(vector<Player*> teamMembers);
     Action takeAction(vector<Player*> player);
 
-    void emotes();
+
+    //Para obtener el estado de salud de mi enemigo
+    int MaxHealth;
 
 };
 

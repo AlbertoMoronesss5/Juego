@@ -24,8 +24,8 @@ int main() {
     cin>>  EnemyArm;
 
 
-    Player *player = new Player(playerName, 10, 3, 2, 3,EnemyArm);
-    Enemy *enemy = new Enemy(enemyName,8, 4, 1, 4,playerArm);
+    Player *player = new Player(playerName, 35, 7, 2, 10,EnemyArm);
+    Enemy *enemy = new Enemy(enemyName,20, 5, 2, 7,playerArm);
 
     vector<Character*> participants;
     participants.push_back(player);

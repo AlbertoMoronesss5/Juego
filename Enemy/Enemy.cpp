@@ -22,7 +22,7 @@ void Enemy::doAttack(Character *target) {
 void Enemy::takeDamage(int damage) {
     setHealth(getHealth() - damage);
     if(getHealth() <= 0) {
-        cout<<getName()<<" has died"<<endl;
+        cout<<getName()<<" has died "<<endl;
     }
     else {
         cout<<getName()<<" has taken " << damage << " damage whit a "<<getArm()<< endl;
@@ -44,15 +44,26 @@ Character* Enemy::getTarget(vector<Player *> teamMembers) {
     return teamMembers[targetIndex];
 }
 
+
 Action Enemy::takeAction(vector<Player *> player) {
     Action myAction;
     myAction.speed = getSpeed();
     myAction.subscriber = this;
-    Character* target = getTarget(player);
-    myAction.target = target;
-    myAction.action = [this, target]() {
-        doAttack(target);
-    };
 
+    //TODO: generar una probabilidad
+
+    Character* target = getTarget(player);
+    srand(time(NULL));
+    if (this->getHealth() < MaxHealth && rand() % 100 < 15){
+        myAction.action = [this, target]() {
+            this->fleed = true;
+        };
+    } else {
+        myAction.target = target;
+        myAction.action = [this, target]() {
+            doAttack(target);
+        };
+    }
     return myAction;
 }
+
