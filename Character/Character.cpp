@@ -1,21 +1,29 @@
 #include "Character.h"
+#include <cstring> //para cadenas
+#include<iostream>
+#include <cstring>
 
-Character::Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer, string _arm) {
-    name = _name;
+
+//costructor con parametros
+Character::Character(char _name[30], int _health, int _attack, int _defense, int _speed, bool _isPlayer, char _arm[20]) {
+    strcpy_s(name, _name);
     health = _health;
     attack = _attack;
     defense = _defense;
     speed = _speed;
     isPlayer = _isPlayer;
     fleed = false;
-    arm = _arm;
+    strcpy_s(arm, _arm);
 }
 
-void Character::setName(string _name) {
-    name = _name;
+
+//metodos
+
+void Character::setName(char _name[30]) {
+    strcpy_s(name, _name);
 }
 
-string Character::getName() {
+char* Character::getName() {
     return name;
 }
 
@@ -51,8 +59,8 @@ int Character::getSpeed() {
     return speed;
 }
 
-string Character::toString() {
-    return "Name: " + name + "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
+char Character::toString() {
+     cout<< "Name: " << name << "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
 }
 
 bool Character::getIsPlayer() {
@@ -63,10 +71,10 @@ bool Character::hasFleed() {
     return fleed;
 }
 
-void Character::setArm(string _arm) {
-    name = _arm;
+void Character::setArm(char _arm[20]) {
+    strcpy_s(arm, _arm);
 }
 
-string Character::getArm() {
+char* Character::getArm() {
     return arm;
 }

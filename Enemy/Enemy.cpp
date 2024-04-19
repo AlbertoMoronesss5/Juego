@@ -10,8 +10,11 @@ int getRolledAttack(int attack) {
     return (rand() % (attack - lowerLimit)) + lowerLimit;
 }
 
-Enemy::Enemy(string name, int health, int attack, int defense, int speed, string arm) : Character(name, health, attack, defense, speed, false, arm) {
+
+//costructor de ENEMY
+Enemy::Enemy(char name[30], int health, int attack, int defense, int speed, char arm[20]) : Character(name, health, attack, defense, speed, false, arm) {
 }
+
 
 void Enemy::doAttack(Character *target) {
     int rolledAttack = getRolledAttack(getAttack());

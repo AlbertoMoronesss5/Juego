@@ -2,6 +2,7 @@
 #include "Player.h"
 #include <iostream>
 #include "../Utils.h"
+#include <cstring>
 
 using namespace std;
 using namespace combat_utils;
@@ -11,7 +12,8 @@ bool compareSpeed(Enemy *a, Enemy *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
-Player::Player(string name, int health, int attack, int defense, int speed, string arm) : Character(name, health, attack, defense, speed, true, arm) {
+//costructor
+Player::Player(char name[30], int health, int attack, int defense, int speed, char arm[20]) : Character(name, health, attack, defense, speed, true, arm) {
     experience = 0;
     level = 1;
 }

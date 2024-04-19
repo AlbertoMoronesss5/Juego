@@ -131,7 +131,7 @@ void Combat::checkForFlee(Character *character) {
 string Combat::participantsToString() {
     string result = "";
     for (int i = 0; i < participants.size(); i++) {
-        result += participants[i]->toString() + "\n";
+        result += participants[i]->toString()  + "\n";
     }
     return result;
 }

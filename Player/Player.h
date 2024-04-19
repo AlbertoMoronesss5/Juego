@@ -11,11 +11,13 @@ struct Action;
 class Enemy;
 
 class Player: public Character {
+    //atributos "personales" de PLAYER
 protected:
     int experience;
     int level;
+    //Constructor
 public:
-    Player(string _name, int _health, int _attack, int _defense, int _speed, string _arm);
+    Player(char _name[30], int _health, int _attack, int _defense, int _speed, char _arm[20]);
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
 
