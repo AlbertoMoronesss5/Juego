@@ -44,6 +44,8 @@ void Combat::prepareCombat() {
     sort(participants.begin(), participants.end(), compareSpeed);
 }
 
+
+
 void Combat::doCombat() {
     prepareCombat();
 
@@ -52,7 +54,6 @@ void Combat::doCombat() {
         registerActions();
         executeActions();
     }
-
     // Verifica quién ganó el combate
     if (enemies.size() == 0) {
         cout << "You have won the combat." << endl;
@@ -65,7 +66,6 @@ void Combat::doCombat() {
                 cout << "Enemy had " << enemy->experience << " experience." << endl;
             }
         }
-
         // Iterar a través de todos los miembros del equipo
         for (Player* player : teamMembers) {
             // Imprimir la experiencia total ganada por el jugador
@@ -73,6 +73,31 @@ void Combat::doCombat() {
         }
     } else {
         cout << "The enemies have won the combat - Game Over." << endl;
+    }
+
+
+    //IMPRIMIR Atributos con el nivel aumentadp
+    for (Player *player: teamMembers) {
+        cout << "Level up " << endl;
+        cout << player->health << endl;
+        cout << player->attack << endl;
+        cout << player->defense << endl;
+    }
+}
+
+
+
+void Combat::increaseEnemyStats(int points) {
+    // DAR LOS PUNTOS A LOS ENEMIGOS
+    for (Enemy *enemy: enemies) {
+
+        // Aumentar atributos
+        int healthIncrease = points / 3;
+        int attackIncrease = points / 3;
+        int defenseIncrease = points - healthIncrease - attackIncrease;
+        enemy->health += healthIncrease;
+        enemy->attack += attackIncrease;
+        enemy->defense += defenseIncrease;
     }
 }
 
@@ -128,14 +153,17 @@ void Combat::checkParticipantStatus(Character* participant) {
 }
 
 void Combat::checkForFlee(Character *character) {
+    // Verificar si  murio para que no escape una vez ya muerto
+    if (character->getHealth() <= 0) {
+        return; //
+    }
     bool fleed = character->hasFleed();
-    if(fleed) {
-        if(character->getIsPlayer()) {
-            cout<<"You have fled the combat"<<endl;
+    if (fleed) {
+        if (character->getIsPlayer()) {
+            cout << "You have fled the combat" << endl;
             teamMembers.erase(remove(teamMembers.begin(), teamMembers.end(), character), teamMembers.end());
-        }
-        else {
-            cout<<character->getName()<<" has fled the combat"<<endl;
+        } else {
+            cout << character->getName() << " has fled the combat" << endl;
             enemies.erase(remove(enemies.begin(), enemies.end(), character), enemies.end());
         }
         participants.erase(remove(participants.begin(), participants.end(), character), participants.end());

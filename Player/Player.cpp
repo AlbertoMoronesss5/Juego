@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../Utils.h"
 #include <cstring>
+#include "Combat.h"
 using namespace std;
 using namespace combat_utils;
 
@@ -69,24 +70,34 @@ Character* Player::getTarget(vector<Enemy *> enemies) {
 }
 
 void Player::gainExperience(Enemy* enemy) {
-    // Verificar si el enemigo está muerto
+    // Sber si el enemigo murio para tomar su experiencia
     if (enemy && enemy->health <= 0) {
         // Sumar la experiencia obtenida por derrotar al enemigo
         experience += enemy->experience;
-        cout << "Player gained " << enemy->experience << " experience from enemy." << endl;
+        // Llamar a la función LevelUp para manejar el nivel y la experiencia restante
+        LevelUp();
     }
 }
 
-//FUNCION PARA SUBIR DE NIVEL
 void Player::LevelUp() {
-    // Verificar si el jugador ha alcanzado o superado 100 de experiencia
+    // Saber si el jugador tiene 100 o mas de experiencia para aumentar el Level
     while (experience >= 100) {
-        // Incrementar el nivel del jugador en 1
         level++;
-        // Reducir 100 de experiencia
+        // Reiniciar
         experience -= 100;
+
+        // Atributos aumentados
+        int healthGain = 10;
+        int attackGain = 5;
+        int defenseGain = 5;
+        health += healthGain;
+        attack += attackGain;
+        defense += defenseGain;
+        // Puntos ganados TOTAL
+        int totalPointsGained = healthGain + attackGain + defenseGain;
     }
 }
+
 
 Action Player::takeAction(vector<Enemy*>enemies) {
     int option = 0;
