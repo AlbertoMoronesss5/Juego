@@ -11,7 +11,7 @@
 #include <queue>
 
 using namespace std;
-
+class Enemy;
 class Combat {
 private:
 

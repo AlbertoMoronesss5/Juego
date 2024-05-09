@@ -12,7 +12,7 @@ using namespace std;
 
 //atributos
 class Character {
-protected:
+public:
     char name[30];
     int health;
     int attack;
@@ -21,9 +21,11 @@ protected:
     bool isPlayer;
     bool fleed;
     char arm[20];
+    int experience;
+    int level;
 
 public:
-    Character(char[30], int, int, int, int, bool, char[20]);
+    Character(char[30], int, int, int, int, bool, char[20], int, int );
 
     virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
@@ -44,6 +46,8 @@ public:
     bool hasFleed();
     void setArm(char[20]);
     char* getArm();
+    int getExperience();
+    int getLevel();
 };
 
 #endif

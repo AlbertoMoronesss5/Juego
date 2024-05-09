@@ -4,6 +4,9 @@
 #include "Combat/Combat.h"
 #include <cstring>
 
+
+//TODO:PREGUNTAR AL PROFE SI YA TIENEN QUE TENER UN VALOR DETERMINADO LOS ENEMIGOS EN LA EXPERIENCIA
+
 using namespace std;
 
 int main() {
@@ -24,8 +27,8 @@ int main() {
     cin.getline(EnemyArm, 30);
 
 
-    Player *player = new Player(PlayerName, 35, 7, 2, 10,EnemyArm);
-    Enemy *enemy = new Enemy(EnemyName,20, 5, 2, 7,PlayerArm);
+    Player *player = new Player(PlayerName, 35, 7, 2, 10,EnemyArm, 10, 1);
+    Enemy *enemy = new Enemy(EnemyName,10, 5, 2, 7,PlayerArm, 10, 1);
 
     vector<Character*> participants;
     participants.push_back(player);

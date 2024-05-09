@@ -1,7 +1,6 @@
 #include "Enemy.h"
 #include <iostream>
 
-
 using namespace std;
 
 //TODO: Check the circular dependency
@@ -12,7 +11,7 @@ int getRolledAttack(int attack) {
 
 
 //costructor de ENEMY
-Enemy::Enemy(char name[30], int health, int attack, int defense, int speed, char arm[20]) : Character(name, health, attack, defense, speed, false, arm) {
+Enemy::Enemy(char name[30], int health, int attack, int defense, int speed, char arm[20], int experience, int level) : Character(name, health, attack, defense, speed, false, arm, experience, level) {
 }
 
 

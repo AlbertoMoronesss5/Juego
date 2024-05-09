@@ -3,7 +3,6 @@
 #include <iostream>
 #include "../Utils.h"
 #include <cstring>
-
 using namespace std;
 using namespace combat_utils;
 
@@ -13,9 +12,8 @@ bool compareSpeed(Enemy *a, Enemy *b) {
 }
 
 //costructor
-Player::Player(char name[30], int health, int attack, int defense, int speed, char arm[20]) : Character(name, health, attack, defense, speed, true, arm) {
-    experience = 0;
-    level = 1;
+Player::Player(char name[30], int health, int attack, int defense, int speed, char arm[20], int experience, int level) : Character(name, health, attack, defense, speed, true, arm, experience, level) {
+
 }
 
 void Player::doAttack(Character *target) {
@@ -58,21 +56,6 @@ void Player::emote() {
     cout<<"Jokes on you" << endl;
 }
 
-void Player::levelUp() {
-    level++;
-    setHealth(getHealth() + 10);
-    setAttack(getAttack() + 5);
-    setDefense(getDefense() + 5);
-    setSpeed(getSpeed() + 5);
-}
-
-void Player::gainExperience(int exp) {
-    experience += exp;
-    if (experience >= 100) {
-        levelUp();
-        experience = 0;
-    }
-}
 
 Character* Player::getTarget(vector<Enemy *> enemies) {
     cout << "Choose a target" << endl;
@@ -83,6 +66,26 @@ Character* Player::getTarget(vector<Enemy *> enemies) {
     cin >> targetIndex;
 
     return enemies[targetIndex];
+}
+
+void Player::gainExperience(Enemy* enemy) {
+    // Verificar si el enemigo está muerto
+    if (enemy && enemy->health <= 0) {
+        // Sumar la experiencia obtenida por derrotar al enemigo
+        experience += enemy->experience;
+        cout << "Player gained " << enemy->experience << " experience from enemy." << endl;
+    }
+}
+
+//FUNCION PARA SUBIR DE NIVEL
+void Player::LevelUp() {
+    // Verificar si el jugador ha alcanzado o superado 100 de experiencia
+    while (experience >= 100) {
+        // Incrementar el nivel del jugador en 1
+        level++;
+        // Reducir 100 de experiencia
+        experience -= 100;
+    }
 }
 
 Action Player::takeAction(vector<Enemy*>enemies) {
@@ -119,6 +122,7 @@ Action Player::takeAction(vector<Enemy*>enemies) {
             cout << "Invalid option" << endl;
             break;
     }
+
 
     return myAction;
 }

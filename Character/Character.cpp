@@ -5,7 +5,7 @@
 
 
 //costructor con parametros
-Character::Character(char _name[30], int _health, int _attack, int _defense, int _speed, bool _isPlayer, char _arm[20]) {
+Character::Character(char _name[30], int _health, int _attack, int _defense, int _speed, bool _isPlayer, char _arm[20], int _experience, int _level) {
     strcpy_s(name, _name);
     health = _health;
     attack = _attack;
@@ -14,6 +14,8 @@ Character::Character(char _name[30], int _health, int _attack, int _defense, int
     isPlayer = _isPlayer;
     fleed = false;
     strcpy_s(arm, _arm);
+    experience = _experience;
+    level = _level;
 }
 
 
@@ -60,8 +62,11 @@ int Character::getSpeed() {
 }
 
 char Character::toString() {
-     cout<< "Name: " << name << "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
+    cout << "Name: " << name
+         << "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) +
+            "\nSpeed: " + to_string(speed);
 }
+
 
 bool Character::getIsPlayer() {
     return isPlayer;
@@ -77,4 +82,12 @@ void Character::setArm(char _arm[20]) {
 
 char* Character::getArm() {
     return arm;
+}
+
+int Character::getExperience() {
+    return experience;
+}
+
+int Character::getLevel() {
+    return level;
 }

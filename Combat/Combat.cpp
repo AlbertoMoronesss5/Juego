@@ -47,18 +47,32 @@ void Combat::prepareCombat() {
 void Combat::doCombat() {
     prepareCombat();
 
-    //Este while es 1 iteracion por ronda
-    while(enemies.size() != 0 && teamMembers.size() != 0) {
+    // Este while es una iteración por ronda
+    while (enemies.size() != 0 && teamMembers.size() != 0) {
         registerActions();
         executeActions();
     }
 
-    //No se imprime el nombre del ganador
-    if(enemies.size() == 0) {
-        cout<<"You have won the combat"<<endl;
-    }
-    else {
-        cout<<"The enemies have won the combat - Game Over"<<endl;
+    // Verifica quién ganó el combate
+    if (enemies.size() == 0) {
+        cout << "You have won the combat." << endl;
+
+        // Iterar a través de la lista de enemigos
+        for (Enemy* enemy : enemies) {
+            // Verificar si el enemigo está muerto
+            if (enemy->health <= 0) {
+                // Imprime la experiencia del enemigo derrotado
+                cout << "Enemy had " << enemy->experience << " experience." << endl;
+            }
+        }
+
+        // Iterar a través de todos los miembros del equipo
+        for (Player* player : teamMembers) {
+            // Imprimir la experiencia total ganada por el jugador
+            cout << "Player " << player->getName() << " has won " << player->experience << " experience." << endl;
+        }
+    } else {
+        cout << "The enemies have won the combat - Game Over." << endl;
     }
 }
 
